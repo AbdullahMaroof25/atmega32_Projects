@@ -1,0 +1,223 @@
+
+BreakinPoint.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000019c  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  0000019c  00000210  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000021a  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000024c  2**2
+                  CONTENTS, READONLY
+  4 .debug_info   000004e6  00000000  00000000  00000288  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000004a3  00000000  00000000  0000076e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000115  00000000  00000000  00000c11  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    00000196  00000000  00000000  00000d26  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ec e9       	ldi	r30, 0x9C	; 156
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 79 00 	call	0xf2	; 0xf2 <main>
+  7a:	0c 94 cc 00 	jmp	0x198	; 0x198 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <GPIO_voidSetPortDirection>:
+  82:	81 30       	cpi	r24, 0x01	; 1
+  84:	41 f0       	breq	.+16     	; 0x96 <GPIO_voidSetPortDirection+0x14>
+  86:	28 f0       	brcs	.+10     	; 0x92 <GPIO_voidSetPortDirection+0x10>
+  88:	82 30       	cpi	r24, 0x02	; 2
+  8a:	39 f0       	breq	.+14     	; 0x9a <GPIO_voidSetPortDirection+0x18>
+  8c:	83 30       	cpi	r24, 0x03	; 3
+  8e:	39 f0       	breq	.+14     	; 0x9e <GPIO_voidSetPortDirection+0x1c>
+  90:	08 95       	ret
+  92:	6a bb       	out	0x1a, r22	; 26
+  94:	08 95       	ret
+  96:	67 bb       	out	0x17, r22	; 23
+  98:	08 95       	ret
+  9a:	64 bb       	out	0x14, r22	; 20
+  9c:	08 95       	ret
+  9e:	61 bb       	out	0x11, r22	; 17
+  a0:	08 95       	ret
+
+000000a2 <GPIO_voidSetPortValue>:
+  a2:	81 30       	cpi	r24, 0x01	; 1
+  a4:	41 f0       	breq	.+16     	; 0xb6 <GPIO_voidSetPortValue+0x14>
+  a6:	28 f0       	brcs	.+10     	; 0xb2 <GPIO_voidSetPortValue+0x10>
+  a8:	82 30       	cpi	r24, 0x02	; 2
+  aa:	39 f0       	breq	.+14     	; 0xba <GPIO_voidSetPortValue+0x18>
+  ac:	83 30       	cpi	r24, 0x03	; 3
+  ae:	39 f0       	breq	.+14     	; 0xbe <GPIO_voidSetPortValue+0x1c>
+  b0:	08 95       	ret
+  b2:	6b bb       	out	0x1b, r22	; 27
+  b4:	08 95       	ret
+  b6:	68 bb       	out	0x18, r22	; 24
+  b8:	08 95       	ret
+  ba:	65 bb       	out	0x15, r22	; 21
+  bc:	08 95       	ret
+  be:	62 bb       	out	0x12, r22	; 18
+  c0:	08 95       	ret
+
+000000c2 <GPIO_u8GetPortPinValue>:
+  c2:	81 30       	cpi	r24, 0x01	; 1
+  c4:	49 f0       	breq	.+18     	; 0xd8 <GPIO_u8GetPortPinValue+0x16>
+  c6:	30 f0       	brcs	.+12     	; 0xd4 <GPIO_u8GetPortPinValue+0x12>
+  c8:	82 30       	cpi	r24, 0x02	; 2
+  ca:	41 f0       	breq	.+16     	; 0xdc <GPIO_u8GetPortPinValue+0x1a>
+  cc:	83 30       	cpi	r24, 0x03	; 3
+  ce:	79 f4       	brne	.+30     	; 0xee <GPIO_u8GetPortPinValue+0x2c>
+  d0:	80 b3       	in	r24, 0x10	; 16
+  d2:	05 c0       	rjmp	.+10     	; 0xde <GPIO_u8GetPortPinValue+0x1c>
+  d4:	89 b3       	in	r24, 0x19	; 25
+  d6:	03 c0       	rjmp	.+6      	; 0xde <GPIO_u8GetPortPinValue+0x1c>
+  d8:	86 b3       	in	r24, 0x16	; 22
+  da:	01 c0       	rjmp	.+2      	; 0xde <GPIO_u8GetPortPinValue+0x1c>
+  dc:	83 b3       	in	r24, 0x13	; 19
+  de:	90 e0       	ldi	r25, 0x00	; 0
+  e0:	02 c0       	rjmp	.+4      	; 0xe6 <GPIO_u8GetPortPinValue+0x24>
+  e2:	95 95       	asr	r25
+  e4:	87 95       	ror	r24
+  e6:	6a 95       	dec	r22
+  e8:	e2 f7       	brpl	.-8      	; 0xe2 <GPIO_u8GetPortPinValue+0x20>
+  ea:	81 70       	andi	r24, 0x01	; 1
+  ec:	08 95       	ret
+  ee:	80 e0       	ldi	r24, 0x00	; 0
+  f0:	08 95       	ret
+
+000000f2 <main>:
+  f2:	6f ef       	ldi	r22, 0xFF	; 255
+  f4:	82 e0       	ldi	r24, 0x02	; 2
+  f6:	0e 94 41 00 	call	0x82	; 0x82 <GPIO_voidSetPortDirection>
+  fa:	6f e0       	ldi	r22, 0x0F	; 15
+  fc:	83 e0       	ldi	r24, 0x03	; 3
+  fe:	0e 94 41 00 	call	0x82	; 0x82 <GPIO_voidSetPortDirection>
+ 102:	6f e0       	ldi	r22, 0x0F	; 15
+ 104:	83 e0       	ldi	r24, 0x03	; 3
+ 106:	0e 94 51 00 	call	0xa2	; 0xa2 <GPIO_voidSetPortValue>
+ 10a:	c0 e0       	ldi	r28, 0x00	; 0
+ 10c:	da e0       	ldi	r29, 0x0A	; 10
+ 10e:	8c 2f       	mov	r24, r28
+ 110:	6d 2f       	mov	r22, r29
+ 112:	0e 94 c0 00 	call	0x180	; 0x180 <__udivmodqi4>
+ 116:	29 2f       	mov	r18, r25
+ 118:	30 e0       	ldi	r19, 0x00	; 0
+ 11a:	08 2f       	mov	r16, r24
+ 11c:	10 e0       	ldi	r17, 0x00	; 0
+ 11e:	c9 01       	movw	r24, r18
+ 120:	80 5a       	subi	r24, 0xA0	; 160
+ 122:	9f 4f       	sbci	r25, 0xFF	; 255
+ 124:	7c 01       	movw	r14, r24
+ 126:	00 5a       	subi	r16, 0xA0	; 160
+ 128:	1f 4f       	sbci	r17, 0xFF	; 255
+ 12a:	90 98       	cbi	0x12, 0	; 18
+ 12c:	91 9a       	sbi	0x12, 1	; 18
+ 12e:	f7 01       	movw	r30, r14
+ 130:	60 81       	ld	r22, Z
+ 132:	82 e0       	ldi	r24, 0x02	; 2
+ 134:	0e 94 51 00 	call	0xa2	; 0xa2 <GPIO_voidSetPortValue>
+ 138:	89 ef       	ldi	r24, 0xF9	; 249
+ 13a:	90 e0       	ldi	r25, 0x00	; 0
+ 13c:	01 97       	sbiw	r24, 0x01	; 1
+ 13e:	f1 f7       	brne	.-4      	; 0x13c <main+0x4a>
+ 140:	00 c0       	rjmp	.+0      	; 0x142 <main+0x50>
+ 142:	00 00       	nop
+ 144:	91 98       	cbi	0x12, 1	; 18
+ 146:	90 9a       	sbi	0x12, 0	; 18
+ 148:	f8 01       	movw	r30, r16
+ 14a:	60 81       	ld	r22, Z
+ 14c:	82 e0       	ldi	r24, 0x02	; 2
+ 14e:	0e 94 51 00 	call	0xa2	; 0xa2 <GPIO_voidSetPortValue>
+ 152:	89 ef       	ldi	r24, 0xF9	; 249
+ 154:	90 e0       	ldi	r25, 0x00	; 0
+ 156:	01 97       	sbiw	r24, 0x01	; 1
+ 158:	f1 f7       	brne	.-4      	; 0x156 <main+0x64>
+ 15a:	00 c0       	rjmp	.+0      	; 0x15c <main+0x6a>
+ 15c:	00 00       	nop
+ 15e:	67 e0       	ldi	r22, 0x07	; 7
+ 160:	83 e0       	ldi	r24, 0x03	; 3
+ 162:	0e 94 61 00 	call	0xc2	; 0xc2 <GPIO_u8GetPortPinValue>
+ 166:	81 11       	cpse	r24, r1
+ 168:	e0 cf       	rjmp	.-64     	; 0x12a <main+0x38>
+ 16a:	cf 5f       	subi	r28, 0xFF	; 255
+ 16c:	c4 36       	cpi	r28, 0x64	; 100
+ 16e:	09 f4       	brne	.+2      	; 0x172 <main+0x80>
+ 170:	c0 e0       	ldi	r28, 0x00	; 0
+ 172:	67 e0       	ldi	r22, 0x07	; 7
+ 174:	83 e0       	ldi	r24, 0x03	; 3
+ 176:	0e 94 61 00 	call	0xc2	; 0xc2 <GPIO_u8GetPortPinValue>
+ 17a:	88 23       	and	r24, r24
+ 17c:	d1 f3       	breq	.-12     	; 0x172 <main+0x80>
+ 17e:	c7 cf       	rjmp	.-114    	; 0x10e <main+0x1c>
+
+00000180 <__udivmodqi4>:
+ 180:	99 1b       	sub	r25, r25
+ 182:	79 e0       	ldi	r23, 0x09	; 9
+ 184:	04 c0       	rjmp	.+8      	; 0x18e <__udivmodqi4_ep>
+
+00000186 <__udivmodqi4_loop>:
+ 186:	99 1f       	adc	r25, r25
+ 188:	96 17       	cp	r25, r22
+ 18a:	08 f0       	brcs	.+2      	; 0x18e <__udivmodqi4_ep>
+ 18c:	96 1b       	sub	r25, r22
+
+0000018e <__udivmodqi4_ep>:
+ 18e:	88 1f       	adc	r24, r24
+ 190:	7a 95       	dec	r23
+ 192:	c9 f7       	brne	.-14     	; 0x186 <__udivmodqi4_loop>
+ 194:	80 95       	com	r24
+ 196:	08 95       	ret
+
+00000198 <_exit>:
+ 198:	f8 94       	cli
+
+0000019a <__stop_program>:
+ 19a:	ff cf       	rjmp	.-2      	; 0x19a <__stop_program>
